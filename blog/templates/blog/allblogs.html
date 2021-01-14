@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-      {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -56,7 +55,7 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active" aria-current="page" href="#">Blog</a>
-              <a class="nav-link active" href="{% static 'Deepica.pdf' %}">Resume</a>
+              <a class="nav-link active" href="#">Resume</a>
               <a class="nav-link" href="#">twitter</a>
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </div>
@@ -66,38 +65,21 @@
 </header>
 
 <main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi this is Ashreeth</h1>
-        <p class="lead text-muted">heloo this is my first website ...i want to devlop this website for friends..in shortly i will...</p>
-        <p>
-          <a href="mailto:puliashreeth140601@gmail.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for job in jobs.all %} 
-        <div class="col">
-          <div class="card shadow-sm">
-              <img class="card-img-top" src="{{job.image.url}}" />
-
-            <div class="card-body">
-              <p class="card-text">{{job.summary}}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-    </div>
-  </div>
-  </div>
-
+<div class="container">
+<h1 class="text-center pt-3">Welcome to Ashreeth's blog</h1>
+<br/>
+<br/>
+<h2>Latest Posts</h2>
+<hr>
+{% for blogs in blog.all %}
+<a href=""><h3>{{ blogs.Title }}</h3></a>
+<h3>{{ blogs.pub_date_pretty }}</h3>
+<img class="img-fluid"  src="{{ blogs.image.url }}" height="200" width="200"/><br/>
+{{ blogs.summary }}
+<br/>
+<br/>
+{% endfor %}
+</div>
 </main>
 
 <footer class="text-muted py-5">
