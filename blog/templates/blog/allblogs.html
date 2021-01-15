@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -46,22 +47,22 @@
   <body>
     
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Ashreeth Web</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Blog</a>
-              <a class="nav-link active" href="#">Resume</a>
-              <a class="nav-link" href="#">twitter</a>
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </div>
-          </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">ASHREETH</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-link active" aria-current="page" href="http://twitter.com">twitter</a>
+          <a class="nav-link active" href="{% static 'passport.pdf' %}">Resume</a>
+          <a class="nav-link" href="{% url 'allblog' %}">blog</a>
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <main>
@@ -72,7 +73,7 @@
 <h2>Latest Posts</h2>
 <hr>
 {% for blogs in blog.all %}
-<a href=""><h3>{{ blogs.Title }}</h3></a>
+<a href="{% url 'detail' blogs.id %}"><h3>{{ blogs.Title }}</h3></a>
 <h3>{{ blogs.pub_date_pretty }}</h3>
 <img class="img-fluid"  src="{{ blogs.image.url }}" height="200" width="200"/><br/>
 {{ blogs.summary }}
